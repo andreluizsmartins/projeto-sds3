@@ -20,7 +20,7 @@ public class SellerController {
 	private SellerRepository sellerRepository;
 	
 	@GetMapping
-	public ResponseEntity<List<Seller>> sellerFindAll(){
+	public ResponseEntity<List<Seller>> FindAll(){
 		List<Seller> result = sellerRepository.findAll();
 		return ResponseEntity.ok(result);
 		
