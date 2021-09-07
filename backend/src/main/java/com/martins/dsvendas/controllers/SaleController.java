@@ -27,8 +27,21 @@ public class SaleController {
 		
 	}
 	@GetMapping(value = "/page")
-	public ResponseEntity<Page<Sale>> sFindAll(Pageable pageable){
+	public ResponseEntity<Page<Sale>> FindAll(Pageable pageable){
 		Page<Sale> result = saleRepository.findAll(pageable);
+		return ResponseEntity.ok(result);
+		
+	}
+	
+	@GetMapping(value = "/totalSales")
+	public ResponseEntity<List<Object[]>> totalSales(){
+		List<Object[]> result = saleRepository.totalSales();
+		return ResponseEntity.ok(result);
+		
+	}
+	@GetMapping(value = "/taxSales")
+	public ResponseEntity<List<Object[]>> taxSales(){
+		List<Object[]> result = saleRepository.taxSales();
 		return ResponseEntity.ok(result);
 		
 	}
