@@ -9,39 +9,39 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.martins.dsvendas.entities.Sale;
-import com.martins.dsvendas.repositories.SaleRepository;
+import com.martins.dsvendas.dto.SaleDTO;
+import com.martins.dsvendas.services.SaleService;
 
 @RestController
 @RequestMapping(value = "/sale")
 public class SaleController {
 
-	@Autowired
-	private SaleRepository saleRepository;
+	@Autowired(required=true)
+	private SaleService service;
 	
 	@GetMapping
-	public ResponseEntity<List<Sale>> FindAll(){
-		List<Sale> result = saleRepository.findAll();
+	public ResponseEntity<List<SaleDTO>> FindAll(){
+		List<SaleDTO> result = service.FindAll();
 		return ResponseEntity.ok(result);
 		
 	}
-	@GetMapping(value = "/page")
-	public ResponseEntity<Page<Sale>> FindAll(Pageable pageable){
-		Page<Sale> result = saleRepository.findAll(pageable);
-		return ResponseEntity.ok(result);
-		
-	}
+	
+	  @GetMapping(value = "/page") public ResponseEntity<Page<SaleDTO>>
+	  FindAll(Pageable pageable){ Page<SaleDTO> result = service.FindAll(pageable);
+	  return ResponseEntity.ok(result);
+	  
+	  }
+	 
 	
 	@GetMapping(value = "/totalSales")
 	public ResponseEntity<List<Object[]>> totalSales(){
-		List<Object[]> result = saleRepository.totalSales();
+		List<Object[]> result = service.totalSales();
 		return ResponseEntity.ok(result);
 		
 	}
 	@GetMapping(value = "/taxSales")
 	public ResponseEntity<List<Object[]>> taxSales(){
-		List<Object[]> result = saleRepository.taxSales();
+		List<Object[]> result = service.taxSales();
 		return ResponseEntity.ok(result);
 		
 	}
