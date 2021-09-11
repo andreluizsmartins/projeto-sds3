@@ -19,7 +19,7 @@ const DonutChart = () => {
             for (let key in response.data) {
 
                 myLabels.push(response.data[key][0]);
-                mySeries.push(response.data[key][1]);
+                mySeries.push(Math.round(response.data[key][1]*10)/10);
 
             }
             setChartData({labels : myLabels, series : mySeries})
